@@ -2,9 +2,7 @@
   <div id="app">
     <div v-if="!canAccess">
       <ul class="nav nav-pills nav-justified mb-3">
-        <li class="nav-item">
-          <a class="navbar-toggler active" data-mdb-toggle="pill" @click="cambiardeRutaLogin" role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
-        </li>
+       
         <li class="nav-item">
           <a class="navbar-toggler" data-mdb-toggle="pill" @click="cambiardeRutaLogin" role="tab" aria-controls="pills-register" aria-selected="false">Crear Cuenta</a>
         </li>

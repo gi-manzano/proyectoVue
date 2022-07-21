@@ -38,11 +38,11 @@ mounted(){
 
 methods:{
     sumarUno(payload){
-        payload.stockCarrito++;
+        payload.stock++;
         this.precioTotal += payload.precio
         },
     restarUno(payload){
-        payload.stockCarrito > 0? payload.stockCarrito --: null;
+        payload.stock > 0? payload.stock --: null;
         this.precioTotal -= payload.precio
         }, 
     carroLocalMethod (newObject)  {
