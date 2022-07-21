@@ -36,7 +36,7 @@ export default {
                 this.$emit('changeFlagFromMain')
         },
         agregarAlCarrito(payload){
-            let objetoCarrito = {...payload,cantidadCarrito:0}
+            let objetoCarrito = {...payload,stockCarrito:0}
                 this.$emit ('emitAgregarAlCarrito',objetoCarrito)
         },
         verDetalle(payload){

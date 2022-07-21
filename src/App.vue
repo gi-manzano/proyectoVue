@@ -6,7 +6,7 @@
           <a class="navbar-toggler active" data-mdb-toggle="pill" @click="cambiardeRutaLogin" role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
         </li>
         <li class="nav-item">
-          <a class="navbar-toggler" data-mdb-toggle="pill" @click="cambiardeRutaLogin" role="tab" aria-controls="pills-register" aria-selected="false">Register</a>
+          <a class="navbar-toggler" data-mdb-toggle="pill" @click="cambiardeRutaLogin" role="tab" aria-controls="pills-register" aria-selected="false">Crear Cuenta</a>
         </li>
       </ul>
 
@@ -24,7 +24,7 @@
     
     <div v-else>
 
-    <carrito-page :carro='Carrito' @emitActualizarCarritoPrincipal="recibirActualizarAlCarrito"
+    <carrito-page :carro='Carrito' @emitActualizarCarrito="recibirActualizarAlCarrito"
     />
 
     <detalle-page v-if="selected" :producto="selected"/>
@@ -71,20 +71,23 @@ export default {
       {
         'id': 1,
         'titulo': 'pastas',
+        'descripcion': 'salsa picante',
         'stock': 23,
         'precio': 590,
         'imagen': 'https://i.pinimg.com/564x/6a/b6/e8/6ab6e8d07b614c2390505eaf5c3a9630.jpg'
       },
       {
         'id': 2,
-        'titulo': 'pastas',
+        'titulo': 'pastas 2',
+        'descripcion': 'salsa suave',
         'stock': 23,
         'precio': 590,
         'imagen': 'https://i.pinimg.com/564x/20/0e/46/200e46b9cd4f24f2225078aef2491a12.jpg'
       },
       {
         'id': 3,
-        'titulo': 'pastas',
+        'titulo': 'Sandwich de pollo',
+        'descripcion': 'mostaza y miel',
         'stock': 23,
         'precio': 590,
         'imagen': 'https://i.pinimg.com/564x/55/e4/c7/55e4c7852ac6bc19e02cb95b66b77bb6.jpg'
@@ -92,6 +95,7 @@ export default {
       {
         'id': 4,
         'titulo': 'Pizza',
+         'descripcion': 'salsa con hierbas',
         'stock': 23,
         'precio': 590,
         'imagen': 'https://i.pinimg.com/564x/fc/50/3e/fc503eb0404f90ad4214104a3314475f.jpg'
@@ -99,6 +103,7 @@ export default {
       {
         'id': 5,
         'titulo': 'Churros',
+         'descripcion': 'chocolate y dulce de leche',
         'stock': 23,
         'precio': 590,
         'imagen': 'https://i.pinimg.com/564x/cd/c8/63/cdc863190cf8953f94b2d109129191d9.jpg'
@@ -106,6 +111,7 @@ export default {
       {
         'id': 6,
         'titulo': 'Nachos',
+         'descripcion': 'salsa chedar',
         'stock': 23,
         'precio': 590,
         'imagen': 'https://i.pinimg.com/564x/fe/cc/98/fecc98685308601789e4e6eaf01bccb2.jpg'
@@ -113,6 +119,7 @@ export default {
       {
         'id': 7,
         'titulo': 'Helado',
+        'descripcion': 'Crema de frutas natulares',
         'stock': 23,
         'precio': 590,
         'imagen': 'https://i.pinimg.com/564x/93/ea/5e/93ea5e6be623f3c246b5f7ae5e128137.jpg'
@@ -120,6 +127,7 @@ export default {
       {
         'id': 8,
         'titulo': 'Pastel de lima',
+        'descripcion': 'sabor lima suave',
         'stock': 23,
         'precio': 590,
         'imagen': 'https://i.pinimg.com/564x/f6/15/e7/f615e77eb435c0f6bb37f78145a65c5e.jpg'
@@ -127,6 +135,7 @@ export default {
       {
         'id': 9,
         'titulo': 'Pastel de chocolate y fresas',
+        'descripcion': 'salsa de chocolate',
         'stock': 23,
         'precio': 590,
         'imagen': 'https://i.pinimg.com/564x/b5/81/c3/b581c34329a0fabdcb8a42cf12e33abe.jpg'

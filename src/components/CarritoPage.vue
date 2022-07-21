@@ -1,12 +1,11 @@
 <template>
-    <div>
-        <hr>
-        <h1>carrito 🛍</h1>
+    <div class="carrito-card">
+        
+        <h1 class="cart">Carrito 🛍</h1>
         <ul>
             <li v-for="item in carroLocal" :key="item.id">
                 <p><i>{{item.titulo}}</i></p>
                 <p>{{item.cantidadCarrito}}</p>
-                <p>{{item.stock}}</p>
                 <p>${{item.precio}}</p>
                 <button class="btn btn-success mx-2" @click="sumarUno(item)">+</button>
                 <button class="btn btn-success mx-2" @click="restarUno(item)">-</button>
@@ -14,7 +13,7 @@
             </li>
         </ul>
 
-        <p class="text-center">Precio Total: {{precioTotal}}</p>
+        <p class="text-center">Precio Total: $ {{precioTotal}}</p>
             <button class="btn">Pagar</button>
         <hr>
     </div>
@@ -39,26 +38,28 @@ mounted(){
 
 methods:{
     sumarUno(payload){
-        payload.cantidadCarrito++;
+        payload.stockCarrito++;
         this.precioTotal += payload.precio
         },
     restarUno(payload){
-        payload.cantidadCarrito > 0? payload.cantidadCarrito --: null;
+        payload.stockCarrito > 0? payload.stockCarrito --: null;
         this.precioTotal -= payload.precio
         }, 
     carroLocalMethod (newObject)  {
-        this.$emit ("emitActualizarCarritoPrincipal", newObject)
+        this.$emit ("emitActualizarCarrito", newObject)
     },   
     },
 
 watch:{
-    carro (nuevoValor) {
-        this.carroLocal = nuevoValor
+    carro (newValue) {
+        this.carroLocal = newValue
     }
 },   
 }
 </script>
 
 <style scoped>
-
+.carrito-card {
+  background-color: rgb(176, 228, 240);
+}
 </style>
