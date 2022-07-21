@@ -1,15 +1,22 @@
 <template>
     <div>
         <hr>
-        <h1>Carrito</h1>
+        <h1>carrito 🛍</h1>
         <ul>
             <li v-for="item in carroLocal" :key="item.id">
-                <p>{{item.nombre}}</p>
+                <p><i>{{item.titulo}}</i></p>
                 <p>{{item.cantidadCarrito}}</p>
-                <button @click="sumarUno(item)">+</button>
-                <button @click="restarUno(item)">-</button>
+                <p>{{item.stock}}</p>
+                <p>${{item.precio}}</p>
+                <button class="btn btn-success mx-2" @click="sumarUno(item)">+</button>
+                <button class="btn btn-success mx-2" @click="restarUno(item)">-</button>
+            <hr>
             </li>
         </ul>
+
+        <p class="text-center">Precio Total: {{precioTotal}}</p>
+            <button class="btn">Pagar</button>
+        <hr>
     </div>
 </template>
 
@@ -17,25 +24,36 @@
 export default {
 name:'CarritoPage',
 props:['carro'],
+
 data(){
+
     return {
-        carroLocal:[]
+        carroLocal:[],
+        precioTotal: 0
     }
 },
+
 mounted(){
     this.carroLocal = this.carro
 },
+
 methods:{
     sumarUno(payload){
         payload.cantidadCarrito++;
+        this.precioTotal += payload.precio
         },
     restarUno(payload){
-        payload.cantidadCarrito--;
-        },     
+        payload.cantidadCarrito > 0? payload.cantidadCarrito --: null;
+        this.precioTotal -= payload.precio
+        }, 
+    carroLocalMethod (newObject)  {
+        this.$emit ("emitActualizarCarritoPrincipal", newObject)
+    },   
     },
+
 watch:{
-    carroLocal(newObject){
-    this.$emit("emitActualizarCarritoPrincipal", newObject)
+    carro (nuevoValor) {
+        this.carroLocal = nuevoValor
     }
 },   
 }

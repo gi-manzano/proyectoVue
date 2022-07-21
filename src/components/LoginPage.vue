@@ -1,12 +1,12 @@
 <template>
 <div>
-<section class="vh-100 gradient-custom">
+<section class="vh-100 custom-card">
   <div class="container py-5 h-100">
     <div class="row justify-content-center align-items-center h-100">
       <div class="col-12 col-lg-9 col-xl-7">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Login</h3>
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Aceptar</h3>
             <form>
 
               <div class="row">
@@ -14,12 +14,12 @@
 
                   <div class="form-outline">
                     <input type="text" id="nombre" class="form-control form-control-lg" v-model="nombre"/>
-                    <label class="form-label" for="nombre">Nombre</label>
+                    <label class="form-label" for="nombre">Tu Nombre</label>
                   </div>
 
                   <div class="form-outline">
                     <input type="password" id="pwd" class="form-control form-control-lg" v-model="pwd"/>
-                    <label class="form-label" for="pwd">Contraseña</label>
+                    <label class="form-label" for="pwd">Tu Contraseña</label>
                   </div>
                 </div>
 
@@ -62,23 +62,19 @@ export default {
 </script>
 
 <style scoped>
-.gradient-custom {
-/* fallback for old browsers */
-background: #f093fb;
+.custom-card {
 
-/* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to bottom right, rgba(240, 147, 251, 1), rgba(245, 87, 108, 1));
+background: #b7bcaa;
 
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to bottom right, rgba(240, 147, 251, 1), rgba(245, 87, 108, 1))
 }
 
 .card-registration .select-input.form-control[readonly]:not([disabled]) {
-font-size: 1rem;
-line-height: 2.15;
-padding-left: .75em;
-padding-right: .75em;
+font-size: 5px;
+line-height: 2;
+padding-left: 20px;
+padding-right: 20px;
 }
+
 .card-registration .select-arrow {
 top: 13px;
 }

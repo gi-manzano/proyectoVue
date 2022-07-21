@@ -20,21 +20,24 @@
       @enviarRegistro="recibirRegistro" 
       />
     </div>
+
     
     <div v-else>
+
+    <carrito-page :carro='Carrito' @emitActualizarCarritoPrincipal="recibirActualizarAlCarrito"
+    />
+
+    <detalle-page v-if="selected" :producto="selected"/>
+    
     <main-page 
-    v-if="canAccess" 
+    v-if= "canAccess"
     @changeFlagFromMain="recibiElMensaje" 
-    :productos="listadoDeProductos"
+    :menú="listadoDeMenú"
     @emitVerDetalle="recibirVerDetalle"
     @emitAgregarAlCarrito="recibirAgregarAlCarrito"
     />
-    
-    <carrito-page :carro='carrito' @emitActualizarCarritoPrincipal="recibirActualizarAlCarrito"/>
-    
-    <detalle-page v-if="selected" :producto="selected"/>
-
     </div>
+
 </div>
 </template>
 
@@ -63,11 +66,74 @@ export default {
     canAccess:false,
     estoyEnLogin:true,
     listadoDeUsuarios:[],
-    listadoDeProductos:[
-  
+    listadoDeMenú:[
 
-      
+      {
+        'id': 1,
+        'titulo': 'pastas',
+        'stock': 23,
+        'precio': 590,
+        'imagen': 'https://i.pinimg.com/564x/6a/b6/e8/6ab6e8d07b614c2390505eaf5c3a9630.jpg'
+      },
+      {
+        'id': 2,
+        'titulo': 'pastas',
+        'stock': 23,
+        'precio': 590,
+        'imagen': 'https://i.pinimg.com/564x/20/0e/46/200e46b9cd4f24f2225078aef2491a12.jpg'
+      },
+      {
+        'id': 3,
+        'titulo': 'pastas',
+        'stock': 23,
+        'precio': 590,
+        'imagen': 'https://i.pinimg.com/564x/55/e4/c7/55e4c7852ac6bc19e02cb95b66b77bb6.jpg'
+      },
+      {
+        'id': 4,
+        'titulo': 'Pizza',
+        'stock': 23,
+        'precio': 590,
+        'imagen': 'https://i.pinimg.com/564x/fc/50/3e/fc503eb0404f90ad4214104a3314475f.jpg'
+      },
+      {
+        'id': 5,
+        'titulo': 'Churros',
+        'stock': 23,
+        'precio': 590,
+        'imagen': 'https://i.pinimg.com/564x/cd/c8/63/cdc863190cf8953f94b2d109129191d9.jpg'
+      },
+      {
+        'id': 6,
+        'titulo': 'Nachos',
+        'stock': 23,
+        'precio': 590,
+        'imagen': 'https://i.pinimg.com/564x/fe/cc/98/fecc98685308601789e4e6eaf01bccb2.jpg'
+      },
+      {
+        'id': 7,
+        'titulo': 'Helado',
+        'stock': 23,
+        'precio': 590,
+        'imagen': 'https://i.pinimg.com/564x/93/ea/5e/93ea5e6be623f3c246b5f7ae5e128137.jpg'
+      },
+      {
+        'id': 8,
+        'titulo': 'Pastel de lima',
+        'stock': 23,
+        'precio': 590,
+        'imagen': 'https://i.pinimg.com/564x/f6/15/e7/f615e77eb435c0f6bb37f78145a65c5e.jpg'
+      },
+      {
+        'id': 9,
+        'titulo': 'Pastel de chocolate y fresas',
+        'stock': 23,
+        'precio': 590,
+        'imagen': 'https://i.pinimg.com/564x/b5/81/c3/b581c34329a0fabdcb8a42cf12e33abe.jpg'
+      },
+    
      ],
+
     carrito:[],
     selected: null
     }
@@ -83,12 +149,14 @@ export default {
       this.carrito.push(payload)
     },
     recibirActualizarAlCarrito(payload){
-          this.carrito = [...payload]
-          //this.carrito = Object.assing(this.carrito,payload)
+          this.carrito = Object.assign(this.carrito,payload)
+          
     },
+   
     recibirVerDetalle(payload){
-      this.selected = payload
+      this.selected =payload
     },
+
     cambiardeRutaLogin(){
       this.estoyEnLogin = !this.estoyEnLogin;
     }
@@ -96,13 +164,12 @@ export default {
 }
 </script>
 
-<style>
+
+<style scope>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
 }
 </style>
