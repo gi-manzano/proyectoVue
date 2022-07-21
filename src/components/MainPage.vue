@@ -8,6 +8,7 @@
                 <div class="card-body">
                 <h5 class="card-title">{{item.titulo}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{item.descripcion}}</h6>
+                <p class="card-subtitle mb-2 text-muted">${{item.precio}}</p>
                 <button @click="agregarAlCarrito(item)" class="btn btn-primary mb-2">Agregar al pedido</button>
                 <button @click="verDetalle(item)" class="btn btn-primary">Ver más</button>
             </div>
@@ -15,9 +16,9 @@
      </div>
     </div>
 
-
- <button @click="desloguear" type="button" class="btn btn-secundary">Volve al Inico</button>
-
+<div class="card-volver">
+ <button @click="desloguear" type="button" class="btn btn-secundary">Salir</button>
+</div>
 </div>
 </template>
 
@@ -56,7 +57,11 @@ export default {
 
 <style scope>
 .card-body {
-    background: #b7bcaa;
+    background: #c7cfb2;
+}
+.card-volver {
+    background-color: #eb4b96;
+    
 }
 
 </style>
