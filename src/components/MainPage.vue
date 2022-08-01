@@ -1,63 +1,57 @@
 <template>
-<div >
-    <h1 class="display-2 text-center ">{{text | capitalize}}</h1>
-        <div class="row">
-            <div class = "col-md-4" v-for= "item in menú" :key="item.id">
-             <div class="card" style="width: 15rem;">
-                <img class="card-img" :src="item.imagen" :alt="item.titulo">
-                <div class="card-body">
-                <h5 class="card-title">{{item.titulo}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{item.descripcion}}</h6>
-                <p class="card-subtitle mb-2 text-muted">${{item.precio}}</p>
-                <button @click="agregarAlCarrito(item)" class="btn btn-primary mb-2">Agregar al pedido</button>
-                <button @click="verDetalle(item)" class="btn btn-primary">Ver más</button>
-            </div>
+<div>
+  <h1 class="display-2 text-center "> {{text | capitalize}} </h1>
+    <div class="row">
+      <div class = "col-md-4" v-for= "(item, index) in products" :key="index">
+          <div class="card" style="width: 35rem padding: 10px;">
+            <img class="card-img" :src="item.imagen" :alt="item.titulo">
+            <div class="card-body">
+            <h5 class="card-title">{{item.titulo}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{item.descripcion}}</h6>
+            <p class="card-subtitle mb-2 text-muted">${{item.precio}}</p>
+            <button @click="agregarAlCarrito(item)" class="btn btn-primary mb-2">Agregar al pedido</button><br>
+            <button @click="verDetalle(item)" class="btn btn-primary">Ver más</button>
+          </div>
         </div>
-     </div>
+      </div>
     </div>
-
-<div class="card-volver">
- <button @click="desloguear" type="button" class="btn btn-secundary">Salir</button>
-</div>
+  <div class="card-volver">
+  <button @click="desloguear" type="button" class="btn btn-secundary">Salir</button>
+  </div>
 </div>
 </template>
 
 <script>
+
+import axios from "axios"
 export default {
-    name:'MainPage',
-    props: ["menú"],
-    data(){
-        return{
-            text:"Elige Tú menú"
+  name: "MainPage",
+  data(){
+    return {
+        products: [],
+    }
+  },
+  async mounted() {
+    /*eslint-disable*/
+    debugger;
+    let isLogged = localStorage.getItem("isLogged");
+    if (isLogged != "true") {
+      this.$router.push("/main");
+    }
+    let resp = await axios.get(
+      "https://62d8b1a29088313935937e1f.mockapi.io/api/products"
+    );
+    this.products = resp.data;
+  },
+};
 
-        }
-    },
-    methods:{
-        desloguear(){
-                this.$emit('changeFlagFromMain')
-        },
-        agregarAlCarrito(payload){
-            let objetoCarrito = {...payload,stockCarrito:0}
-                this.$emit ('emitAgregarAlCarrito',objetoCarrito)
-        },
-        verDetalle(payload){
-            this.$emit('emitVerDetalle',payload)
-        },
-    },
-    filters: {
-    capitalize: function (value) {
-    if (!value) return ''
-    value = value.toString()
-    return value.charAt(0).toUpperCase() + value.slice(1)
-  }
-}
-}
+
 </script>
-
 
 <style scope>
 .card-body {
     background: #c7cfb2;
+    
 }
 .card-volver {
     background-color: #eb4b96;

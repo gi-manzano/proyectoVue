@@ -1,7 +1,7 @@
 <template>
-    <div class="card">
+    <div class="card animate__fadeIn">
         <hr>
-        <h1 class="display-2 text-center">Detalle del plato</h1>
+        <h1 class="display-2 text-center">Tú plato:</h1>
         <h3>Plato: {{producto.titulo}}</h3>
         <p>Descripción: {{producto.descripcion}}</p>
         <p>Disponible: {{producto.stock}}</p>
