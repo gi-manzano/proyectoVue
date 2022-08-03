@@ -10,7 +10,7 @@
     &nbsp;
     <button @click="desloguear">Desloguear</button>
     &nbsp;
-    <router-view></router-view>
+    <router-view> </router-view>
   </div>
 </template>
 
@@ -22,6 +22,7 @@
 export default {
   name: 'App',
   components: { },
+  mounted () {},
   data(){
     return{
     // canAccess:false,
@@ -105,8 +106,7 @@ export default {
     
     //  ],
 
-    // carrito:[],
-    // selected: null
+
     }
   },
   methods:{

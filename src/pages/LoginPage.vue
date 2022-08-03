@@ -32,8 +32,12 @@
                 </div>
 
               <div class="mt-4 pt-2">
-                
-                <b-button @click="validarLogin" variant="primary">Login</b-button>
+                <button 
+                  @click="validarLogin" 
+                  class="btn-primary"
+                  type="button"
+                  value="Login">
+                  Login</button>
               </div>
            </div>
             </b-form>
@@ -61,8 +65,7 @@ export default {
   },
   methods: {
     validarLogin() {
-      /*eslint-disable*/
-      debugger;
+    
       let data = this.usuarios.find(
         (o) => o.email === this.usuario && o.password === this.password
       ); 

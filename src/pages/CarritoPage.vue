@@ -1,7 +1,8 @@
 <template>
 <div class="carrito-card">
-        
+     <h1>{{ $store.state.msg }}</h1>   
   <h1>Carrito 🛍</h1>
+
   <ul>
     <li v-for="(item, index) in $store.state.carrito" :key="index">
       {{item.titulo}} - {{item.cantidadCarrito}}
@@ -32,29 +33,46 @@
 </template>
 
 <script>
-
+import axios from "axios";
 export default {
-
 name:'CarritoPage',
-
-
 data(){
-
-    return {}
+ return {
+  cantidadCarrito: 0,
+  product: {
+    title: '',
+    description: '',
+    amount: '',
+    price: 0
+  }
+ };
 },
+async mounted() {
+    /*eslint-disable*/
+    let isLogged = localStorage.getItem("isLogged");
+    let isAdmin = localStorage.getItem("isAdmin");
 
-// mounted(){
-//     this.carroLocal = this.carro
-// },
+    if (isLogged != "true") {
+      this.$router.push("/login");
+    }
+
+    if (isAdmin != "true") {
+      this.$router.push("/main");
+    }
+    let paramId = this.$route.params.id
+    let resp = await axios.get(
+      "https://62e6d7cd69bd03090f764b0b.mockapi.io/api/productos/" + paramId
+    );
+    this.product = resp.data;
+  },
+
 
 methods:{
-    sumarUno(payload){
-        payload.cantidadCarrito++;
-        this.precioTotal += payload.precio
+    sumarUno(){
+        this.cantidadCarrito +=1;
         },
-    restarUno(payload){
-        payload.cantidadCarrito > 0? payload.cantidadCarrito --: null;
-        this.precioTotal -= payload.precio
+    restarUno(){
+        this.cantidadCarrito >= 1 ? this.cantidadCarrito -= 1 : null;
         }, 
     carroLocalMethod (newObject,)  {
         this.$emit("emitActualizarCarrito", newObject)
@@ -62,6 +80,11 @@ methods:{
     agregarProductoAlCarrito(payload) {
       let o = { ...payload, cantidadCarrito: 1 };
       this.$store.commit("agregarAlCarrito", o);
+    },
+    async Comprar() {
+        "https://62e6d7cd69bd03090f764b0b.mockapi.io/api/productos/" + this.$route.params.id,
+        this.product
+      alert('Compra Finalizada')
     },
   },
 };
