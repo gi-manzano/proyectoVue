@@ -24,7 +24,5 @@ export default new router({
     {path: '/admin', component: AdminPage, props: true},
     {path: '/admin/create', component: CreatePage, props: true},
     {path: '/admin/edit/:id', component: EditarPage, props: true},
-    
     ]
-  }
-);
+  });

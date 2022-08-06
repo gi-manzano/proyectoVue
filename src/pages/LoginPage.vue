@@ -62,7 +62,7 @@
 </section>
 </template>
 
-<script lang="js">
+<script>
 
 import axios from "axios";
 export default {
@@ -71,17 +71,15 @@ export default {
 
   data() {
     return {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
       usuarios: [],
       errors: [],
-    };
+    }
   },
   methods: {
-    
     validarLogin() {
-      let data = this.usuarios.find((o) => o.email === this.usuario && o.password === this.password); 
-      
+      let data = this.usuarios.find((o) => o.email === this.email &&  o.password === this.password); 
       localStorage.clear();
 
       if (data) {

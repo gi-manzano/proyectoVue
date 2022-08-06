@@ -5,7 +5,16 @@
       <div class="col-12 col-lg-9 col-xl-7">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-            
+            <!-- errors -->
+            <!-- <div v-if="errors.length > 0" class="alert alert-dismissible fade show alert-warning" role="alert" data-mdb-color="danger" id="customxD">
+                  <p class="text-start">Errores detectados:</p>
+                  <ul>
+                    <div>
+                      <li v-for="error in errors" :key="error.index" align="left">{{ error }}</li>
+                      <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  </ul>
+                </div> -->
             <!-- inicio de formulario -->
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registrate Aquí</h3>
             <b-form  @submit.prevent="ValidarUsuario" method="POST" class="formulario">
@@ -76,31 +85,27 @@ export default {
   },
   data() {
     return {
-      usuario: {
+      
         name: "",
         email: "",
         password: "",
-      },
-      
+        errors: []
     };
   },
   methods: {
     async EnviarData() {
-      if (this.checkFrom ()) {
-      const newUser = {
-        name: this.usuario.name,
-        password: this.usuario.password,
-        email: this.usuario.email,
+      let data = {
+        name: this.name,
+        password: this.password,
+        email: this.email,
         isAdmin: false,
       };
-      let resp = await axios.post(
-        "https://62d8b1a29088313935937e1f.mockapi.io/api/users",
-        newUser
-      );
-      this.usuarios = resp.data;
-      this.$router.push('/login') }
+      let response = await axios.post(
+        "https://62d8b1a29088313935937e1f.mockapi.io/api/users",data);
+      this.usuarios = response.data;
+      this.$router.push('/login');
     },
-     checkForm () {return (this.validarNombre() && this.validarMail() && this.validarEdad() && this.validarPassword())},
+    //  checkForm () {return (this.validarNombre() && this.validarMail() && this.validarEdad() && this.validarPassword())},
         
         ValidarUsuario () {
           this.errors = [];
