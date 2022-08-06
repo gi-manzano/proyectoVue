@@ -1,35 +1,28 @@
-<template>
-<div class="carrito-card">
-     <h1>{{ $store.state.msg }}</h1>   
-  <h1>Carrito 🛍</h1>
-
-  <ul>
-    <li v-for="(item, index) in $store.state.carrito" :key="index">
-      {{item.titulo}} - {{item.cantidadCarrito}}
-      <p>${{item.precio}}</p>
-      <button class="btn btn-success mx-2" 
-      @click="sumarUno(item)">+</button>
-      <button class="btn btn-success mx-2" 
-      @click="restarUno(item)">-</button>
-    <hr>
-    </li>
-  </ul>
-  <ul>
-    <h1>Productos</h1>
-    <li
-     v-for="(item, index) in $store.state.products"
-        :key="index"
-        @click="agregarProductoAlCarrito(item)"
-      >
-        {{ item.name }}>
-
-    </li>
-  </ul>
-
-  <p class="text-center">Precio Total: $ {{precioTotal}}</p>
-      <button class="btn">Pagar</button>
-  <hr>
-</div>
+<template lang="html">
+  <section class="carrito-component">
+    <div class="carrito-card">
+      <h1>{{ $store.state.msg }}</h1>   
+        <h2>Carrito 🛍</h2>
+      <ul>
+        <li v-for="(item, index) in $store.state.carrito" :key="index">
+          {{item.titulo}} - {{item.cantidadCarrito}}
+          <p>${{item.precio}}</p>
+          <button class="btn btn-success mx-2" 
+          @click="sumarUno(item)">+</button>
+          <button class="btn btn-success mx-2" 
+          @click="restarUno(item)">-</button>
+            <hr>
+        </li>
+      </ul>
+        <h1>Productos</h1>
+      <ul>
+        <li v-for="(item, index) in $store.state.products" :key="index" @click="agregarProductoAlCarrito(item)">{{ item.name }}>
+        </li>
+      </ul>
+         <button class="btn">  <p class="text-center">Precio Total: $ {{precioTotal}}</p>Pagar</button>
+          <hr>
+      </div>
+  </section>
 </template>
 
 <script>
@@ -65,8 +58,6 @@ async mounted() {
     );
     this.product = resp.data;
   },
-
-
 methods:{
     sumarUno(){
         this.cantidadCarrito +=1;

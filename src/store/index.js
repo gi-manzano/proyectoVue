@@ -7,10 +7,10 @@ export default new Vuex.Store ({
     state: {
         carrito: [],
         products: [],
-        msg: "Carrito",
-        usuario : {
-          nombre: ''
-        }
+        name: '',
+        email: '',
+        password: '',
+        isAdmin: false
     },
     mutations: {
         cambiarMensaje: (state, payload) => {
@@ -41,13 +41,13 @@ export default new Vuex.Store ({
       
       getAllProducts: ({ commit }) => {
         fetch (`https://62e8071893938a545bded358.mockapi.io/products/`)
-        .then((res) => res.json ())
+        .then((response) => response.json ())
         .then((response) => {
           let producto = response.data;
           commit('obtenerProductos', producto);
         })
-        .catch (err => {
-          alert(err);
+        .catch (error => {
+          alert(error);
         })
       },
     },

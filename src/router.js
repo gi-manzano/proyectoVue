@@ -1,54 +1,30 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import router from 'vue-router'
+
+import LoginPageVue from './pages/LoginPage.vue';
+import ResigstroPage from './pages/RegistroPage.vue'
+import HomePageVue from './pages/HomePage.vue';
+import AdminPageVue from './pages/AdminPage.vue';
+import CreatePageVue from './pages/CreatePage.vue';
+import EditarPageVue from './pages/EditarPage.vue';
 
 
-Vue.use(VueRouter)
+Vue.use(router);
 
-export default new VueRouter({
+export default new router({
 
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    {
-        path: '/login',
-        name: 'login',
-        component: () => import ('./pages/LoginPage'),
-        props: true
-    },
-
-    {
-        path: '/registro',
-        name: 'registro',
-        component: () => import('./pages/RegistroPage'),
-        props: true
-    },
-
-    {
-        path: '/main',
-        name: 'main',
-        component: () => import('./pages/MainPage'),
-        props: true
-    },
-
-    {
-        path: '/admin',
-        name: 'admin',
-        component: () => import('./pages/AdminPage'),
-        props: true
-    },
-
-    {
-        path: '/admin/:id',
-        name: 'editar',
-        component: () => import('./pages/EditarPage'),
-        props: true
-    },
-    {
-        path: '/carrito/:id',
-        name: 'carrito',
-        component: () => import ('../src/pages/CarritoPage')
-    },
-
+    {path: '/', redirect: '/login'},
+    {path: '/login',component: LoginPageVue, props: true},
+    {path: '/registro',component: ResigstroPage, props: true},
+    {path: '/home',component: HomePageVue ,props: true},
+    {path: '/home/:id',component: HomePageVue ,props: true},
+    {path: '/admin', component: AdminPageVue, props: true},
+    {path: '/admin/create', component: CreatePageVue, props: true},
+    {path: '/admin/edit/:id', component: EditarPageVue, props: true},
+    
     ]
   }
 );

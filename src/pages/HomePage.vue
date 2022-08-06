@@ -1,22 +1,21 @@
-<template>
-<div>
+<template lang="html">
+<div class="containter">
   <h1 class="display-2 text-center "> {{text | capitalize}} </h1>
     <div class="row">
-      <div class = "col-md-4" v-for= "(item, index) in $store.state.carrito" :key="index">
+      <div v-for="(item, index) in products" :key="index" class = "col-md-4">
           <div class="card" style="width: 35rem padding: 10px;">
-            <img class="card-img" :src="item.imagen" :alt="item.titulo">
             <div class="card-body">
-            <h5 class="card-title">{{item.titulo}}</h5>
+            <h5 class="card-title">{{item.title}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{item.descripcion}}</h6>
             <p class="card-subtitle mb-2 text-muted">${{item.precio}}</p>
-            <button @click="agregarProductoAlCarrito(item)" class="btn btn-primary mb-2">Agregar al pedido</button><br>
-            <button @click="verDetalle(item)" class="btn btn-primary">Ver más</button>
+            <p class="card-subtitle mb-2 text-muted">Amount: {{item.amount}}</p>
+            <button @click="agregarProductoAlCarrito(item)" class="btn btn-primary mb-2">Agregar al pedido</button> 
           </div>
         </div>
       </div>
     </div>
   <div class="card-volver">
-  <button @click="desloguear" type="button" class="btn btn-secundary">Salir</button>
+  <button href="/login" type="button" class="btn btn-secundary">Salir</button>
   </div>
 </div>
 </template>
@@ -25,29 +24,35 @@
 
 import axios from "axios"
 export default {
-  name: "MainPage",
-  data(){
-    return {
-        products: [],
-    }
-  },
+  name: "HomePage",
+  props: [],
+  
   async mounted() {
     /*eslint-disable*/
     debugger;
     let isLogged = localStorage.getItem("isLogged");
     if (isLogged != "true") {
-      this.$router.push("/main");
+      this.$router.push("/home");
     }
-    let resp = await axios.get(
+    let response = await axios.get(
       "https://62d8b1a29088313935937e1f.mockapi.io/api/products"
     );
-    this.products = resp.data;
+    this.products = response.data;
   },
+  data () {
+    return {
+      products: [],
+    }
+  },
+
   method: {
     agregarProductoAlCarrito (payload) {
       let o = {... payload, cantidadCarrito: 1 }
       this.$store.commit('agregarAlCarrito', o)
     }
+  },
+  computed: {
+
   }
 };
 

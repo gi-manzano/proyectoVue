@@ -1,94 +1,107 @@
-<template>
-<div>
+<template lang="html">
 <section class="vh-100 custom-card">
   <div class="container py-5 h-100">
     <div class="row justify-content-center align-items-center h-100">
       <div class="col-12 col-lg-9 col-xl-7">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5 ">
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Mi Comida App</h3>
-            <b-form>
 
-              <div class="row">
-                <div class="col-md-12 mb-4">
-
-                  <div class="form-outline">
-                    <label class="form-label" for="nombre">Tu Email</label>
-                    <b-form-input 
-                    type="text" 
-                    id="nombre" 
-                    class="form-control form-control-lg" 
-                    v-model="email"/>
+            <!-- error -->
+            <div v-if="errors.length > 0" class="alert alert-dismissible fade show alert-warning" role="alert" data-mdb-color="danger" id="customxD">
+                <p class="text-start">Errores detectados:</p>
+                <ul>
+                  <div>
+                    <li v-for="error in errors" :key="error.index" align="left">{{ error }}</li>
+                    <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
                   </div>
-
-                  <div class="form-outline">
-                    <label class="form-label" for="pwd">Tu Password</label>
-                    <b-form-input 
-                    type="password" 
-                    id="password" 
-                    class="form-control form-control-lg" 
-                    v-model="password"/>
-                  </div>
-                </div>
-
-              <div class="mt-4 pt-2">
-                <button 
-                  @click="validarLogin" 
-                  class="btn-primary"
-                  type="button"
-                  value="Login">
-                  Login</button>
+                </ul>
               </div>
-           </div>
-            </b-form>
+            <!-- inicio de formulario -->
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Mi Comida App</h3>
+              <form @sumbit.prevent="validarLogin">
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                      <!-- email -->
+                      <div class="form-outline">
+                        <label class="form-label" for="nombre">Tu Email</label>
+                        <input 
+                        type="text" 
+                        id="nombre" 
+                        class="form-control form-control-lg" 
+                        v-model="email"/>
+                      </div>
+                      <!-- password -->
+                      <div class="form-outline">
+                        <label class="form-label" for="pwd">Tu Password</label>
+                        <input 
+                        type="password" 
+                        id="password" 
+                        class="form-control form-control-lg" 
+                        v-model="password"/>
+                      </div>
+                    </div>
+
+                    <div class="mt-4 pt-2">
+                        <button  class="btn-primary" type="sumbit" value="Login">Login</button>
+                    </div>
+                      <!-- registrarse -->
+                      <div class="row mb-4">
+                        <div class="col">
+                          <router-link to="/registro" class="text-primary d-flex justify-content-end" style="margin-left: 70%;">Not registered?</router-link>
+                        </div>
+                      </div>
+                </div>
+              </form> 
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-</div>
 </template>
 
-<script>
+<script lang="js">
 
 import axios from "axios";
 export default {
   name: "LoginPage",
+  props: [],
   data() {
     return {
-      usuario: "",
       email: "",
       password: "",
       usuarios: [],
+      errors: [],
     };
   },
   methods: {
-    validarLogin() {
     
-      let data = this.usuarios.find(
-        (o) => o.email === this.usuario && o.password === this.password
-      ); 
+    validarLogin() {
+      let data = this.usuarios.find((o) => o.email === this.usuario && o.password === this.password); 
+      
       localStorage.clear();
+
       if (data) {
         localStorage.setItem("isLogged", "true");
+        localStorage.setItem("user", JSON.stringify(data));
+
         if (data?.isAdmin) {
           localStorage.setItem("isAdmin", "true");
-          this.$router.push("admin");
+          this.$router.push("/admin");
         } else {
           localStorage.setItem("isAdmin", "false");
-          this.$router.push("main");
+          this.$router.push("/home");
         }
-      }
+       } else {
+        this.errors.push ("Usuario o password no válidos")
+       }
     },
   },
   async mounted() {
-    let resp = await axios.get(
-      "https://62d8b1a29088313935937e1f.mockapi.io/api/users"
-    );
-    this.usuarios = resp.data;
-   
+    const response = await axios.get("https://62d8b1a29088313935937e1f.mockapi.io/api/users");
+    this.usuarios = response.data;
   },
+  computed: {}
 };
 </script>
 
