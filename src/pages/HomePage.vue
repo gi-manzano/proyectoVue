@@ -1,6 +1,6 @@
 <template lang="html">
 <div class="containter">
-  <h1 class="display-2 text-center "> {{text | capitalize}} </h1>
+  <h1 class="display-2 text-center "> </h1>
     <div class="row">
       <div v-for="(item, index) in products" :key="index" class = "col-md-4">
           <div class="card" style="width: 35rem padding: 10px;">
@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-  <div class="card-volver">
+  <div class="card-salir">
   <button href="/login" type="button" class="btn btn-secundary">Salir</button>
   </div>
 </div>

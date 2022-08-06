@@ -23,20 +23,22 @@
                     <div class="col-md-12 mb-4">
                       <!-- email -->
                       <div class="form-outline">
-                        <label class="form-label" for="nombre">Tu Email</label>
+                        <label class="form-label" for="form2Example1">Tu Email</label>
                         <input 
-                        type="text" 
-                        id="nombre" 
+                        type="email" 
+                        id="form2Example1" 
                         class="form-control form-control-lg" 
+                        name="email"
                         v-model="email"/>
                       </div>
                       <!-- password -->
                       <div class="form-outline">
-                        <label class="form-label" for="pwd">Tu Password</label>
+                        <label class="form-label" for="form2Example2">Tu Password</label>
                         <input 
                         type="password" 
-                        id="password" 
-                        class="form-control form-control-lg" 
+                        id="form2Example2" 
+                        class="form-control form-control-lg"
+                        name="password" 
                         v-model="password"/>
                       </div>
                     </div>
@@ -47,7 +49,7 @@
                       <!-- registrarse -->
                       <div class="row mb-4">
                         <div class="col">
-                          <router-link to="/registro" class="text-primary d-flex justify-content-end" style="margin-left: 70%;">Not registered?</router-link>
+                          <router-link to="/registro" class="text-primary justify-content-end" style="margin-left: 70%;">No estas registrado?</router-link>
                         </div>
                       </div>
                 </div>
@@ -66,6 +68,7 @@ import axios from "axios";
 export default {
   name: "LoginPage",
   props: [],
+
   data() {
     return {
       email: "",

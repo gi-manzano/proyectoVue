@@ -3,9 +3,7 @@
   <section class="navbar-component">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <!-- Container wrapper -->
       <div class="container-fluid">
-        <!-- Toggle button -->
         <button
           class="navbar-toggler"
           type="button"
@@ -17,10 +15,7 @@
         >
           <i class="fas fa-bars"></i>
         </button>
-
-        <!-- Collapsible wrapper -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Navbar brand -->
           <a class="navbar-brand mt-2 mt-lg-0" href="#">
             <img src="../assets/comida-logo.png" height="30" alt="MDB Logo" loading="lazy"/>
           </a>
@@ -40,7 +35,7 @@
         </div>
         <div class="d-flex align-items-center">
           
-          <a class="text-reset me-3" @click="User">
+          <a class="text-reset me-3" @click="Usuario">
             <i class="fas fa-shopping-cart"></i>
           </a>
           <div class="dropdown">
@@ -70,10 +65,10 @@
         localStorage.setItem('isLogged', 'false')
         this.$router.push('/login')
       },
-      User(){
-        let data = localStorage.getItem('user')
-        this.user = data;
-        console.log(this.user);
+      Usuario(){
+        let data = localStorage.getItem('usuario')
+        this.usuario = data;
+        console.log(this.usuario);
       }
     },
     computed: {
@@ -85,5 +80,9 @@
 </script>
 
 <style scoped>
+.navbar-collapse {
+  background: rgb(34,193,195);
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(139,195,150,0.8130602582830007) 100%);
+}
 
 </style>
