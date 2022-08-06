@@ -1,14 +1,14 @@
 <template lang="html">
   <section class="admin-component container">
-    <h1>Editar listado: (admin)</h1>
-      <a href="/admin/create" class="btn btn-secundary">Setting</a>
+    <h1>Editar listado: Eres Admin</h1>
+      <a href="/admin/create" class="btn btn-danger ">Setting</a>
         <table class="table table-striped">
           <thead class="thead-light">
                  <tr>
                     <th>Title</th>
                     <th>Descripcion</th>
-                    <th>Amount</th>
                     <th>Precio</th>
+                    <th>Stock</th>
                     <th>Editar</th>
                  </tr>
             </thead>
@@ -16,14 +16,14 @@
       <tr v-for="(item, index) in products" :key="index">
         <td><b>{{ item.title }}</b></td>
         <td><b>{{item.descripcion }}</b></td>
-        <td>${{ item.price }}</td>
-        <td v-if="item.amount < 20">{{ item.amount }}</td>
-        <td v-if="item.amount >= 20 && item.amount <= 50">{{ item.amount }}</td>
+        <td><b>${{ item.price }}</b></td>
+        <td v-if="item.amount < 20" class="text-danger">{{ item.amount }}</td>
+        <td v-if="item.amount >= 20" class="text-strong">{{ item.amount }}</td>
         <td v-else>{{ item.amount }}</td>
         <td>
         <div class="row">
           <button class="btn btn-primary bm-1" @click="editarProducto(item.id)">Editar</button>
-          <button class="btn btn-danger" @click="borrarProducto(item.id)">Eliminar </button>
+          <button class="btn btn-danger bm-1" @click="borrarProducto(item.id)">Eliminar </button>
         </div>
         </td>
       </tr>

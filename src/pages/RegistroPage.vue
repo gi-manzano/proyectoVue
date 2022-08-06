@@ -6,7 +6,7 @@
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
             <!-- errors -->
-            <!-- <div v-if="errors.length > 0" class="alert alert-dismissible fade show alert-warning" role="alert" data-mdb-color="danger" id="customxD">
+            <div v-if="errors.length > 0" class="alert alert-dismissible fade show alert-warning" role="alert" data-mdb-color="danger" id="customxD">
                   <p class="text-start">Errores detectados:</p>
                   <ul>
                     <div>
@@ -14,7 +14,7 @@
                       <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
                     </div>
                   </ul>
-                </div> -->
+                </div>
             <!-- inicio de formulario -->
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registrate Aquí</h3>
             <b-form  @submit.prevent="ValidarUsuario" method="POST" class="formulario">
@@ -62,7 +62,7 @@
                 </div>
 
               <div class="mt-4 pt-2">
-                <button  type="submit" class="btn btn-secondary btn-lg" @submit.prevent="EnviarData" value="Registrate">Reguistrate</button>
+                <button  type="submit" class="btn btn-secondary btn-lg" @click="EnviarData" value="Registrate">Reguistrate</button>
               </div>
            </div>
             </b-form>
@@ -107,7 +107,7 @@ export default {
     },
     //  checkForm () {return (this.validarNombre() && this.validarMail() && this.validarEdad() && this.validarPassword())},
         
-        ValidarUsuario () {
+        ValidarUsuario (a) {
           this.errors = [];
           let nameRegex= /^[a-zA-Z]{3,}$/;
           let emailRegex= /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -122,6 +122,16 @@ export default {
             this.errors.push ('Email de usuario requerido!');
           } else if (!emailRegex.test (this.email)) {
             this.errors.push ('Email no valido')
+          }
+          if (!this.password) {
+            this.errors.push ('Password de usuario requerido');
+          } else if (this.password.length > 8) {
+            this.errors.push ('La contraseña debe tener maximo 8 caracteres')
+          }
+          if (this.errors.length > 0){
+              a.preventDataful ();
+          } else {
+            this.EnviarData ();
           }
         }
         // validarNombre(){

@@ -7,7 +7,7 @@
           <div class="card-body p-4 p-md-5 ">
 
             <!-- error -->
-            <div v-if="errors.length > 0" class="alert alert-dismissible fade show alert-warning" role="alert" data-mdb-color="danger" id="customxD">
+            <!-- <div v-if="errors.length > 0" class="alert alert-dismissible fade show alert-warning" role="alert" data-mdb-color="danger" id="customxD">
                 <p class="text-start">Errores detectados:</p>
                 <ul>
                   <div>
@@ -15,7 +15,8 @@
                     <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
                   </div>
                 </ul>
-              </div>
+              </div> -->
+
             <!-- inicio de formulario -->
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Mi Comida App</h3>
               <form @sumbit.prevent="validarLogin">
@@ -44,7 +45,7 @@
                     </div>
 
                     <div class="mt-4 pt-2">
-                        <button  class="btn-primary" type="sumbit" value="Login">Login</button>
+                        <button  @click="validarLogin" class="btn-primary" type="sumbit" value="Login">Login</button>
                     </div>
                       <!-- registrarse -->
                       <div class="row mb-4">
