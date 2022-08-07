@@ -37,7 +37,7 @@ export default {
   async mounted() {
     let isLogged = localStorage.getItem("isLogged");
     if (isLogged != "true") {
-      this.$router.push("/home")
+      this.$router.push("/login");
     }
     let response = await axios.get(
       "https://62efbfad57311485d1278ded.mockapi.io/api/products/products"

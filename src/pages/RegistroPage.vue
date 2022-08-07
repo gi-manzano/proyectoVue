@@ -23,7 +23,7 @@
                   <!-- usuario -->
                   <div class="form-outline">
                     <label class="form-label" for="firstName">Usuario</label>
-                    <b-form-input 
+                    <input 
                     type="text"  
                     v-model="name"
                     id="inline-form-input.name"
@@ -37,7 +37,7 @@
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
                     <label class="form-label" for="firstName">Email</label>
-                    <b-form-input 
+                    <input 
                     type="text" 
                     v-model="email"
                     id="firstName" 
@@ -51,7 +51,7 @@
                   <div class="col-md-6 mb-4">
                   <div class="form-outline">
                     <label class="form-label" for="password">Password</label>
-                    <b-form-input 
+                    <input 
                     type="password" 
                     v-model="password"
                     name="password" 
@@ -77,7 +77,7 @@
 <script>
 import axios from "axios";
 export default {
-  /* eslint-disable */ 
+  
   name: " RegistroPage",
   props: [],
   mounted () {
@@ -111,59 +111,31 @@ export default {
           this.errors = [];
           let nameRegex= /^[a-zA-Z]{3,}$/;
           let emailRegex= /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-          
+          // nombre usuario
           if (!this.name) {
             this.errors.push ('Nombre de usuario requerido!');
           } else if (!nameRegex.test (this.name)) {
             this.errors.push ('Usuario no valido')
           }
-
+          // email usuario
           if (!this.email) {
             this.errors.push ('Email de usuario requerido!');
           } else if (!emailRegex.test (this.email)) {
             this.errors.push ('Email no valido')
           }
+          // password usuario
           if (!this.password) {
             this.errors.push ('Password de usuario requerido');
-          } else if (this.password.length > 8) {
+          } else if (this.password.length > 10) {
             this.errors.push ('La contraseña debe tener maximo 8 caracteres')
           }
+          // error de datos
           if (this.errors.length > 0){
               a.preventDataful ();
           } else {
             this.EnviarData ();
           }
         }
-        // validarNombre(){
-        //     let regex1 = /^(([A-Za-z]+[\-\']?)*([A-Za-z]+)?\s)+([A-Za-z]+[\-\']?)*([A-Za-z]+)?$/;
-        //     if (regex1.test(this.usuario.nombre)){
-        //         this.mensajeNombre = "";
-        //         return true;
-        //     } else {
-        //         this.mensajeNombre = "Nombre inválido";
-        //         return false;
-        //     }
-        // },
-        // validarEmail(){
-        //     let regex2 =/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-        //     if (regex2.test(this.usuario.email)){
-        //         this.mensajeMail = "";
-        //         return true;
-        //     } else {
-        //         this.mensajeMail = "Email inválido";
-        //         return false;
-        //     }
-        // },
-        // validarPassword(){
-        //     let regex3 = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-        //     if (regex3.test(this.usuario.password)){
-        //         this.mensajePassword = "";
-        //         return true;
-        //     } else {
-        //         this.mensajePassword = "Clave inválida"
-        //         return false;
-        //     }
-        // }
   },
 };
 </script>
