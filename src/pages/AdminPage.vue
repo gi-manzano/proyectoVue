@@ -16,13 +16,13 @@
       <tr v-for="(item, index) in products" :key="index">
         <td><b>{{ item.title }}</b></td>
         <td><b>{{item.descripcion }}</b></td>
+        <td>${{ item.price }}</td>
         <td v-if="item.amount < 20" class="text-danger">{{ item.amount }}</td>
         <td v-else-if="item.amount >= 20" class="text-strong">{{ item.amount }}</td>
         <td v-else>{{ item.amount }}</td>
-        <td>${{ item.price }}</td>
         <td>
         <div class="row">
-          <button @click="editarProducto(item.id)" class="btn btn-primary bm-1" id="edit">Editar</button>
+          <button @click="editarProducto(item.id)" class="btn btn-warning bm-1" >Editar</button>
           <button @click="borrarProducto(item.id)" class="btn btn-danger bm-1" id="delete">Eliminar </button>
         </div>
         </td>
@@ -34,7 +34,6 @@
 
 <script>
 import axios from "axios";
-
 export default {
   name: "AdminPage",
   props: [],
@@ -69,12 +68,12 @@ export default {
   },
   methods: {
     editarProducto(id) {
-   
-      this.$router.push({path: "/admin/edit/" + id});
+       /*eslint-disable*/
+      this.$router.push( {path: "/admin/edit/" + id} );
     },
      
      async borrarProducto(id) {
-            await axios.delete("https://62efbfad57311485d1278ded.mockapi.io/api/products/products" + id)
+            await axios.delete("https://62efbfad57311485d1278ded.mockapi.io/api/products/products/" + id)
             .then (response => {
               console.log (response);
               location.reload ()

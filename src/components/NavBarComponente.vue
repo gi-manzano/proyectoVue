@@ -80,13 +80,13 @@
 </script>
 
 <style scoped>
-.navbar-collapse {
+/* .navbar-collapse {
   background: rgb(216, 60, 196);
   background: linear-gradient(0deg, rgb(174, 34, 195) 0%, rgba(139,195,150,0.8130602582830007) 100%);
 }
 .dropdown-toggle {
    background-color: orangered;
  
-}
+} */
 
 </style>

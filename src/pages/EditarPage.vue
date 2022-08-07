@@ -37,11 +37,11 @@ export default {
     let isLogged = localStorage.getItem("isLogged");
     let isAdmin = localStorage.getItem("isAdmin");
 
-    if (isLogged != "true") {
+    if (isLogged !== "true") {
       this.$router.push("/login");
     }
 
-    if (isAdmin != "true") {
+    if (isAdmin !== "true") {
       this.$router.push("/home");
     }
     let id = this.$route.params.id
