@@ -1,7 +1,7 @@
 <template lang="html">
   <section class="admin-component container">
     <h1>Editar listado: Eres Admin</h1>
-      <a href="/admin/create" class="btn btn-danger ">Add product</a>
+      <a href="/admin/create" class="btn btn-primary ">Add product</a>
         <table class="table table-striped">
           <thead class="thead-light">
                  <tr>
