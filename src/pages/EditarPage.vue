@@ -31,22 +31,22 @@ export default {
      description: '',
      price: '',
      amount: '',
-    };
+    }
   },
   async mounted() {
     let isLogged = localStorage.getItem("isLogged");
     let isAdmin = localStorage.getItem("isAdmin");
 
-    if (isLogged !== "true") {
+    if (isLogged != "true") {
       this.$router.push("/login");
     }
 
-    if (isAdmin !== "true") {
+    if (isAdmin != "true") {
       this.$router.push("/home");
     }
     let id = this.$route.params.id
     let producto = await axios.get(
-      "https://62efbfad57311485d1278ded.mockapi.io/api/products/products" + id);
+      "https://62efbfad57311485d1278ded.mockapi.io/api/products/products/" + id);
     this.title= producto.data.title;
     this.description= producto.data.description;
     this.price= producto.data.price;
@@ -55,7 +55,7 @@ export default {
   methods: {
     async settingProducts() {
      await axios.put(
-        "https://62efbfad57311485d1278ded.mockapi.io/api/products/products" + this.$route.params.id,
+        "https://62efbfad57311485d1278ded.mockapi.io/api/products/products/" + this.$route.params.id,
        {
         title: this.title,
         description: this.descripcion,
