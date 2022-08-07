@@ -16,10 +16,10 @@
       </ul>
         <h1>Productos</h1>
       <ul>
-        <li v-for="(item, index) in $store.state.products" :key="index" @click="agregarProductoAlCarrito(item)">{{ item.name }}>
+        <li v-for="(item, index) in $store.state.products" :key="index" @click="agregarProductoAlCarrito(item.id)">{{ item.name }}>
         </li>
       </ul>
-         <button class="btn">  <p class="text-center">Precio Total: $ {{precioTotal}}</p>Pagar</button>
+         <button class="btn"><p class="text-center">Precio Total: $ {{precioTotal}}</p>Pagar</button>
           <hr>
       </div>
   </section>

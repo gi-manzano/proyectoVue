@@ -50,7 +50,7 @@
                       <!-- registrarse -->
                       <div class="row mb-4">
                         <div class="col">
-                          <router-link to="/registro" class="text-primary justify-content-end" style="margin-left: 70%;">No estas registrado?</router-link>
+                          <router-link to="/registro" class="text-primary justify-content-end" style="margin-left: 70%;"> No estas registrado? </router-link>
                         </div>
                       </div>
                 </div>
