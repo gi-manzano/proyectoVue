@@ -5,11 +5,10 @@ import Axios from 'axios'
 import store from './store'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
 
 Vue.config.productionTip = false
-Vue.use(BootstrapVue)
-Vue.use(IconsPlugin);
+
 Vue.use(Axios);
 Vue.use(router);
 
