@@ -16,7 +16,7 @@
       </div>
     </div>
   <div class="card-salir">
-  <button href='/#' type="button" class="btn btn-secundary">Salir</button>
+  <!-- <button type="button" class="btn btn-secundary">Salir</button> -->
   </div>
 </div>
 </template>
@@ -27,23 +27,22 @@ import axios from "axios"
 export default {
   name: "HomePage",
   props: [],
+
+    data () {
+      return {
+        products: [],
+      }
+    },
   
   async mounted() {
-    /*eslint-disable*/
-    debugger;
     let isLogged = localStorage.getItem("isLogged");
     if (isLogged != "true") {
-      this.$router.push("/home");
+      this.$router.push("/home")
     }
     let response = await axios.get(
       "https://62efbfad57311485d1278ded.mockapi.io/api/products/products"
     );
     this.products = response.data;
-  },
-  data () {
-    return {
-      products: [],
-    }
   },
 
   method: {
