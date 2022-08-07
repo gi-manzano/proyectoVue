@@ -100,7 +100,7 @@ export default {
     },
   },
   async mounted() {
-    const response = await axios.get("https://62d8b1a29088313935937e1f.mockapi.io/api/users");
+    const response = await axios.get("https://62efbfad57311485d1278ded.mockapi.io/api/products/user");
     this.usuarios = response.data;
   },
   computed: {}

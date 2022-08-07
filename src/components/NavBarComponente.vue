@@ -81,8 +81,12 @@
 
 <style scoped>
 .navbar-collapse {
-  background: rgb(34,193,195);
-  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(139,195,150,0.8130602582830007) 100%);
+  background: rgb(216, 60, 196);
+  background: linear-gradient(0deg, rgb(174, 34, 195) 0%, rgba(139,195,150,0.8130602582830007) 100%);
+}
+.dropdown-toggle {
+   background-color: orangered;
+ 
 }
 
 </style>

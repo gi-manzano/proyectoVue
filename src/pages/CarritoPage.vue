@@ -54,7 +54,7 @@ async mounted() {
     }
     let paramId = this.$route.params.id
     let resp = await axios.get(
-      "https://62e6d7cd69bd03090f764b0b.mockapi.io/api/productos/" + paramId
+      "https://62efbfad57311485d1278ded.mockapi.io/api/products/products" + paramId
     );
     this.product = resp.data;
   },
@@ -73,7 +73,7 @@ methods:{
       this.$store.commit("agregarAlCarrito", o);
     },
     async Comprar() {
-        "https://62e6d7cd69bd03090f764b0b.mockapi.io/api/productos/" + this.$route.params.id,
+        "https://62efbfad57311485d1278ded.mockapi.io/api/products/products" + this.$route.params.id,
         this.product
       alert('Compra Finalizada')
     },

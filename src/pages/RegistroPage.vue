@@ -101,7 +101,7 @@ export default {
         isAdmin: false,
       };
       let response = await axios.post(
-        "https://62d8b1a29088313935937e1f.mockapi.io/api/users",data);
+        "https://62efbfad57311485d1278ded.mockapi.io/api/products/user",data);
       this.usuarios = response.data;
       this.$router.push('/login');
     },

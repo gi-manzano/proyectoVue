@@ -46,7 +46,7 @@ import axios from 'axios';
     methods: {
     async createProduct () {
       await  axios.post(
-          "https://62d8b1a29088313935937e1f.mockapi.io/api/products",
+          "https://62efbfad57311485d1278ded.mockapi.io/api/products/products",
           {
             title: this.title,
             description: this.description,

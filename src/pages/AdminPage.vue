@@ -1,7 +1,7 @@
 <template lang="html">
   <section class="admin-component container">
     <h1>Editar listado: Eres Admin</h1>
-      <a href="/admin/create" class="btn btn-danger ">Setting</a>
+      <a href="/admin/create" class="btn btn-danger ">Add product</a>
         <table class="table table-striped">
           <thead class="thead-light">
                  <tr>
@@ -16,14 +16,14 @@
       <tr v-for="(item, index) in products" :key="index">
         <td><b>{{ item.title }}</b></td>
         <td><b>{{item.descripcion }}</b></td>
-        <td><b>${{ item.price }}</b></td>
         <td v-if="item.amount < 20" class="text-danger">{{ item.amount }}</td>
-        <td v-if="item.amount >= 20" class="text-strong">{{ item.amount }}</td>
+        <td v-else-if="item.amount >= 20" class="text-strong">{{ item.amount }}</td>
         <td v-else>{{ item.amount }}</td>
+        <td>${{ item.price }}</td>
         <td>
         <div class="row">
-          <button class="btn btn-primary bm-1" @click="editarProducto(item.id)">Editar</button>
-          <button class="btn btn-danger bm-1" @click="borrarProducto(item.id)">Eliminar </button>
+          <button @click="editarProducto(item.id)" class="btn btn-primary bm-1" id="edit">Editar</button>
+          <button @click="borrarProducto(item.id)" class="btn btn-danger bm-1" id="delete">Eliminar </button>
         </div>
         </td>
       </tr>
@@ -44,13 +44,13 @@ export default {
       products: [],
     };
   },
-  methods: {
-    editarProducto(payload) {
-      /*eslint-disable*/
-      debugger
-      this.$router.push({ name: "editar", params: { id: payload } });
-    },
-  },
+  // methods: {
+  //   editarProducto(payload) {
+  //     /*eslint-disable*/
+  //     debugger
+  //     this.$router.push({ name: "editar", params: { id: payload } });
+  //   },
+  // },
 
   async mounted() {
     let isLogged = localStorage.getItem("isLogged");
@@ -63,7 +63,7 @@ export default {
       this.$router.push("/home");
     }
     let response = await axios.get(
-      "https://62d8b1a29088313935937e1f.mockapi.io/api/products"
+      "https://62efbfad57311485d1278ded.mockapi.io/api/products/products"
     );
     this.products = response.data;
   },
@@ -72,8 +72,9 @@ export default {
    
       this.$router.push({path: "/admin/edit/" + id});
     },
+     
      async borrarProducto(id) {
-            await axios.delete("https://62e6d7cd69bd03090f764b0b.mockapi.io/api/productos/" + id)
+            await axios.delete("https://62efbfad57311485d1278ded.mockapi.io/api/products/products" + id)
             .then (response => {
               console.log (response);
               location.reload ()
@@ -83,13 +84,6 @@ export default {
             });
         }
   },
-  filters: {
-        capitalize: function (value) {
-            if (!value) return ''
-                value = value.toString()
-                return value.charAt(0).toUpperCase() + value.slice(1)
-            }
-    },
     computed : {
       
     }

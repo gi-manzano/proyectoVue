@@ -6,16 +6,17 @@
           <div class="card" style="width: 35rem padding: 10px;">
             <div class="card-body">
             <h5 class="card-title">{{item.title}}</h5>
+            
             <h6 class="card-subtitle mb-2 text-muted">{{item.descripcion}}</h6>
-            <p class="card-subtitle mb-2 text-muted">${{item.precio}}</p>
-            <p class="card-subtitle mb-2 text-muted">Amount: {{item.amount}}</p>
-            <button @click="agregarProductoAlCarrito(item)" class="btn btn-primary mb-2">Agregar al pedido</button> 
+            <p class="card-subtitle mb-2 text-muted">${{item.price}}</p>
+            <p class="card-subtitle mb-2 text-muted">Stock: {{item.amount}}</p>
+            <button @click="agregarProductoAlCarrito(item.id)" class="btn btn-primary mb-2">Add carrito</button> 
           </div>
         </div>
       </div>
     </div>
   <div class="card-salir">
-  <button href="/login" type="button" class="btn btn-secundary">Salir</button>
+  <button href='/#' type="button" class="btn btn-secundary">Salir</button>
   </div>
 </div>
 </template>
@@ -35,7 +36,7 @@ export default {
       this.$router.push("/home");
     }
     let response = await axios.get(
-      "https://62d8b1a29088313935937e1f.mockapi.io/api/products"
+      "https://62efbfad57311485d1278ded.mockapi.io/api/products/products"
     );
     this.products = response.data;
   },
