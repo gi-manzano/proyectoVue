@@ -33,7 +33,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   margin-top: 60px;
-  background-color: aquamarine;
-  
+  background-color: rgb(206, 195, 78);
+ 
 }
 </style>

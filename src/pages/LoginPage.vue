@@ -111,10 +111,16 @@ export default {
 .custom-card {
 
 background: #b7bcaa;
+ background-image: url("../assets/fondo-app.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+
 
 }
 
 .card-body {
+ 
   background: rgb(34,193,195);
   background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(139,195,150,0.8130602582830007) 100%);
 }

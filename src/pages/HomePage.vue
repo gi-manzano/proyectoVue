@@ -64,10 +64,12 @@ export default {
 .card-body {
     background: #c7cfb2;
     
+    
 }
 .card-volver {
     background-color: #eb4b96;
     
 }
+
 
 </style>

@@ -171,6 +171,9 @@ export default {
 <style scoped>
 .custom-card {
   background: #b7bcaa;
+  background-image: url("../assets/fondo-app.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .card-body {
   background: rgb(34,193,195);
